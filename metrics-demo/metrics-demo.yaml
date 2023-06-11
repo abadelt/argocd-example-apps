@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: metrics-demo-api
+  name: metrics-demo
 spec:
   replicas: 1
   revisionHistoryLimit: 3
@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - image: registry.k3s.local/metrics-demo-api:latest
-        name: metrics-demo-api
+        name: metrics-demo
         ports:
         - containerPort: 80
