@@ -11,7 +11,7 @@ spec:
   template:
     metadata:
       labels:
-        app: metrics-demo-api
+        app: metrics-demo
     spec:
       containers:
       - image: registry.k3s.local/metrics-demo-api:latest
