@@ -14,7 +14,7 @@ spec:
         app: metrics-demo
     spec:
       containers:
-      - image: registry.k3s.cluster/metrics-demo-api:latest
+      - image: https://registry.k3s.cluster/metrics-demo-api:latest
         name: metrics-demo
         ports:
         - containerPort: 80
