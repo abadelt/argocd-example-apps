@@ -14,7 +14,7 @@ spec:
         app: whoami-demo
     spec:
       containers:
-      - image: https://registry.k3s.cluster/whoami:latest
+      - image: registry.k3s.cluster/whoami:latest
         name: whoami-demo
         ports:
         - containerPort: 80
