@@ -18,3 +18,46 @@ spec:
         name: whoami-demo
         ports:
         - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: whoami-demo
+  namespace: new-dev
+  labels:
+    app: registry
+spec:
+  selector:
+    app: whoami-demo
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  - name: https
+    port: 443
+    targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: new-whoami-tls-ingress
+  namespace: new-dev
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: my-ca-issuer
+spec:
+  rules:
+    - host: new-whoami.k3s.cluster
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: whoami
+                port:
+                  number: 80
+  tls:
+    - secretName: new-whoami-tls-my-ca
+      hosts:
+        - new-whoami.k3s.cluster
