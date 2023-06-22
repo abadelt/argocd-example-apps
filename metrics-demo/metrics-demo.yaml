@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: metrics-demo
+  name: whoami-demo
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: metrics-demo
+      app: whoami-demo
   template:
     metadata:
       labels:
-        app: metrics-demo
+        app: whoami-demo
     spec:
       containers:
-      - image: https://registry.k3s.cluster/metrics-demo-api:latest
-        name: metrics-demo
+      - image: https://registry.k3s.cluster/whoami:latest
+        name: whoami-demo
         ports:
         - containerPort: 80
